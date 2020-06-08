@@ -1,9 +1,10 @@
 import * as ActionTypes from './ActionTypes';
-import baseUrl from '../shared/baseUrl';
+import {baseUrl} from '../shared/baseUrl';
 
 export const fetchComments = ()=>(dispatch)=>{
     return fetch(baseUrl+'comments')
     .then(response =>{
+        
         if (response.ok)
             return response;
         else
@@ -75,6 +76,8 @@ export const fetchPromos = ()=>(dispatch)=>{
     dispatch(promosLoading());
     return fetch(baseUrl+'promotions')
     .then(response =>{
+        console.log(response);
+        console.log(baseUrl+'promotions');
         if (response.ok)
             return response;
         else
