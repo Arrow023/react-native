@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
-import {View,Text,ScrollView,FlatList,StyleSheet,Modal,Button,Alert,PanResponder} from 'react-native';
+import {View,Text,ScrollView,FlatList,StyleSheet,Modal,Button,Alert,PanResponder,Share} from 'react-native';
 import {Card,Icon,Rating,Input} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
 import {postFavorite,postComment} from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
+
 const mapDispatchToProps = dispatch => ({
     postFavorite:(dishId) => dispatch(postFavorite(dishId)),
     postComment: (dishId,rating,author,comment) => dispatch(postComment(dishId,rating,author,comment))
@@ -31,6 +32,8 @@ function RenderDish(props)
         else
             return false;
     }
+
+
 
     const panResponder= PanResponder.create({
         onStartShouldSetPanResponder:(e,gestureState) =>{
@@ -68,6 +71,16 @@ function RenderDish(props)
         }
     })
 
+    const shareDish =(title,message,url) => {
+        Share.share({
+            title:title,
+            message:title+": "+message+" "+url,
+            url:url
+        },{
+            dialogTitle:'Share '+title
+        });
+    }
+
 
     if (dish!=null)
     {
@@ -90,6 +103,11 @@ function RenderDish(props)
                         type='font-awesome' 
                         color='#512DA8' 
                         onPress={()=>props.edit()}/>
+                        <Icon raised reverse name='share' 
+                        type='font-awesome' 
+                        color='#51D2A8'
+                        onPress={()=>shareDish(dish.name,dish.description,baseUrl+dish.image)}/>
+
                     </View>
                 </Card>
             </Animatable.View>
