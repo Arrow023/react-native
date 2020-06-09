@@ -29,7 +29,7 @@ function RenderDish(props)
     const recognizeDrag =({moveX,moveY,dx,dy})=> {
         if (dx<-200)
             return true;
-        else
+        else if (dx>200)
             return false;
     }
 
