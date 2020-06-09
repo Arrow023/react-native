@@ -42,6 +42,7 @@ function RenderDish(props)
         },
         onPanResponderEnd:(e,gestureState)=> {
             if (recognizeDrag(gestureState))
+            {
                 Alert.alert(
                     'Add to Favorites',
                     'Are you sure you wish to add '+dish.name+' to your Favorites?',
@@ -58,7 +59,12 @@ function RenderDish(props)
                     ],
                     {cancelable:false}
                 );
-                return true;
+            }
+            else if (!recognizeDrag(gestureState))
+            {
+                props.edit();
+            }
+            return true;
         }
     })
 
