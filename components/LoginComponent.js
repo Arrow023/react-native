@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View,StyleSheet,Text,ScrollView,Image} from 'react-native';
 import {Icon,Input,CheckBox,Button} from 'react-native-elements';
-import {Asset} from 'expo';
 import * as SecureStore from 'expo-secure-store';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
